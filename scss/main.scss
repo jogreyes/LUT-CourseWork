@@ -1,8 +1,8 @@
 @import 'config';
 @import 'menu';
-@import 'mobile';
 
 //This applies to all tags in the html document
+
 * {
   box-sizing: border-box;
 }
@@ -10,7 +10,7 @@
 body {
   @include background();
   background-color: $primary-color;
-  color: #fff;
+  color: set-text-color($primary-color);
   heigh: 100%;
   margin: 0;
   font-family: 'Segoe UI', tahoma, Geneva, Verdana,sans-serif;
@@ -52,12 +52,14 @@ header {
 
 main {
   padding: 4rem;
-  height: 100%;
+  //height: 100%;
+  min-height: calc(100vh - 60px);
 
   .icons {
     margin-top: 1rem;
 
     a {
+      color: set-text-color($primary-color);
       padding: 0.4rem;
 
       &:hover {
@@ -69,8 +71,63 @@ main {
 
   &#home {
     overflow: hidden;
+
     h1 {
       margin-top: 20vh;
     }
   }
 }
+//About Me section GridTemplate
+
+
+
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas:
+  'bioimage bio bio'
+  'job-1 job-2 job-3';
+  grid-template-columns: repeat(3, 1fr);
+
+
+  .bio-img{
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: solid 3px $secondary-color;
+  }
+
+
+  .bio {
+    grid-area: bio;
+    font-size: 1.5rem;
+  }
+
+  .job-1 {
+    grid-area: job-1;
+
+  }
+
+  .job-2 {
+    grid-area: job-2;
+  }
+
+  .job-3 {
+    grid-area: job-3;
+  }
+
+  .job {
+    background-color: lighten($primary-color, 5);
+    padding: 0.5rem;
+    border-bottom: solid $secondary-color 5px;
+  }
+}
+
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: darken($primary-color, 5);
+  color: set-text-color($primary-color);
+  height: 60px;
+}
+@import 'mobile';
